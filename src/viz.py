@@ -129,10 +129,8 @@ def compare_dci_quadrants(df, target_col, feature_name):
 
     # polish
     plt.suptitle("Local Cluster Map Over {target}".format(target=feature_name), fontsize=32)
-    axes[0].set_xlabel("Significance Threshold {alpha_symbol} $=$ 0.05".format(alpha_symbol=r'$ \alpha $'), 
-                                                                               fontsize=20)
-    axes[1].set_xlabel("Significance Threshold {alpha_symbol} $=$ 0.01".format(alpha_symbol=r'$ \alpha $'), 
-                                                                               fontsize=20)
+    axes[0].set_xlabel("Community Distress Category")
+    axes[1].set_xlabel("Moran's I Quadrant")
 
     for axis in axes: # hide coordinate ticks
         axis.set_xticks([])
