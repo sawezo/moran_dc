@@ -36,15 +36,15 @@ def lagged_feature(df, target_feature, y_lag, feature_name):
 
     # polishing
     plt.suptitle(f"Raw vs. Lagged Values of {feature_name} by Census Block", fontsize=24)
-    ax[0].set_xlabel("Raw Values", fontsize=16)
-    ax[1].set_xlabel("Spatially Lagged Values", fontsize=16)
+    ax[0].set_xlabel("Raw Values", fontsize=22)
+    ax[1].set_xlabel("Spatially Lagged Values", fontsize=22)
     for axis in ax:
         axis.set_xticks([])
         axis.set_yticks([])
 
 
     # configurations
-    plt.tight_layout(rect=[0, .3, 1.5, 0.95])
+    plt.tight_layout(rect=[0, .25, 1.5, 0.95])
     plt.savefig('./imgs/lagged.png', bbox_inches='tight')
 
 def moran_test_simulation(morans_i_test, target_feature_name):
@@ -113,7 +113,7 @@ def compare_dci_quadrants(df, target_col, feature_name):
     label_text = ["Prosperous", "Decent", "At Risk", "Worst"]
     label2color_dci = dict(zip(label_text, colors))
     
-    label_text = ["Q1: (+, +)", "Q2: (-, +)", "Q3: (-, -)", "Q4: (+, -)", "No Significance"]
+    label_text = ["Q1: (+, +)", "Q4: (+, -)", "Q2: (-, +)", "Q3: (-, -)", "No Significance"]
     label2color_quadrants = dict(zip(label_text, colors))
 
 
@@ -128,9 +128,9 @@ def compare_dci_quadrants(df, target_col, feature_name):
 
 
     # polish
-    plt.suptitle("Local Cluster Map Over {target}".format(target=feature_name), fontsize=32)
-    axes[0].set_xlabel("Community Distress Category")
-    axes[1].set_xlabel("Moran's I Quadrant")
+    plt.suptitle("Comparing DCI Categories with the Spatial Distribution of {target}".format(target=feature_name), fontsize=22)
+    axes[0].set_xlabel("Community Distress Category", fontsize=18)
+    axes[1].set_xlabel("Moran's I Quadrant", fontsize=18)
 
     for axis in axes: # hide coordinate ticks
         axis.set_xticks([])
@@ -138,8 +138,8 @@ def compare_dci_quadrants(df, target_col, feature_name):
 
     # legend
     lines = [Line2D([0], [0], color=color, linewidth=5, linestyle='-') for color in label2color_quadrants.values()]
-    labels = ["Prosperous/Diamonds (+, +)", "Decent/Diamonds in the Rough: (-, +)", 
-              "At Risk/Rough in the Diamonds (-, -)", "Worst/Rough (+, -)", "No Significance"]
+    labels = ["Prosperous/Diamonds", "Decent/Diamonds in the Rough", 
+              "At Risk/Rough in the Diamonds", "Worst/Rough", "No Significance"]
     fig.legend(lines, labels, loc='center', bbox_to_anchor=(.5, .72), shadow=True, ncol=5, prop={'size':14})
 
 
